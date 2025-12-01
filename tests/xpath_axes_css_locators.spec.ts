@@ -63,7 +63,6 @@ import{test, expect, Locator} from "@playwright/test"
 
 // })
 
-
 //websites = html + js + UI css things added
 //absolute css locator, not recommended as strucutre can be changed and locator misplaced
 
