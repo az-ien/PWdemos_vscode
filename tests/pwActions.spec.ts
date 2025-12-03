@@ -53,10 +53,27 @@ const sundayCheckbox:Locator = page.getByLabel('Sunday');
 
 //capture all checkboxes and assert each is checked. all elements can be checked placed in an array and checked then so ne need to map but video logic
 // dont agree with the two lines below :(
-const days:string[] = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const checkboxes: Locator[] = days.map(index => page.getByLabel(index));
-expect(checkboxes.length).toBe(7);
+// const days:string[] = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+// const checkboxes: Locator[] = days.map(index => page.getByLabel(index));
+// expect(checkboxes.length).toBe(7);
 
+//------------------------------------------------------------------------------------------------------------------------------------------
+const days = page.locator("//div[@class='form-group']//input[@type='checkbox']");
+const count = await days.count();
+
+const checkboxes: Locator[] = [];
+
+for (let i = 0; i < count; i++) {
+  //const id = await days.nth(i).getAttribute("id");
+  //const label = await page.locator(`label[for="${id}"]`).textContent();
+  const label = await days.nth(i).locator('..').textContent();
+  checkboxes.push(page.getByLabel(label!.trim()));
+
+}
+
+expect(checkboxes.length).toBe(count);
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
 
 //capture all checkboxes and assert each is checked
 for(const checkbox of checkboxes ){     // all values are taken
@@ -100,9 +117,9 @@ await expect(checkboxes[i]).toBeChecked();
 
 }
 
-//select the checkbox based on the value
+//select the checkbox based on the value, if the upper code is commented and changed as it is now then in days there are already lables is the for loop will be modified to 'in' instead of 'of'
 const weekName:string  = "Friday";
-for(const lable of days)
+for(const lable in days)
 {
 if(lable.toLowerCase()===weekName.toLowerCase())
     {
