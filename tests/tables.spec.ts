@@ -83,3 +83,51 @@ expect(totalprice).toBe(7100);
 
 
 })
+
+
+
+test.only("verify chrome CPU load in dynamic table",async ({page})=>{
+
+await page.goto('https://practice.expandtesting.com/dynamic-table');
+
+
+const table:Locator =await page.locator('table.table>tbody');
+await expect (table).toBeVisible();
+
+// select all rows, then find number of rows (as an array of Locators)
+const rows: Locator[] = await page.locator('table.table>tbody>tr').all(); //all will bring an array so receive a locator array
+console.log('Number of rows in a table:', rows.length);
+expect(rows.length).toBe(4);
+
+
+//step1: for chrome get value of cpu load 
+// read each row to check chrome presence 
+
+let cpuload='';
+for(const row of rows)
+    {
+        const processName = await row.locator('td').nth(0).innerText();  // td will be appeneded to the already captured table locator and after that the 'o'th index's text is picked 
+        if (processName === "Chrome" )
+        {
+            cpuload =await row.locator('td:has-text("%")').innerText();
+            console.log('CPU load of chrome is:', cpuload );
+            break; // break the loop as no need to move further 
+        }
+       }
+
+// need this for the comaprison 
+let yellowboxtext: string = await page.locator ('p#chrome-cpu').innerText();
+console.log('Chrome cpu load from yellow box:',yellowboxtext );
+
+if(yellowboxtext.includes(cpuload))
+{
+    console.log('CPU Load of chrome is equal.');
+}
+else {
+    console.log('CPU Load of chrome is not equal.');
+}
+expect(yellowboxtext).toContain(cpuload);
+
+await page.waitForTimeout(3000);
+
+})
