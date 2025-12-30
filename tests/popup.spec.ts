@@ -11,7 +11,8 @@ await Promise.all([page.waitForEvent('popup'),page.locator('#PopUp').click()]) /
 const allPopuwindows = context.pages() // array of pages returned 
 console.log("popup windows",allPopuwindows.length) //3 pages
 
-
+// there should be overall 3 pages after popups being opened but but my code is returning only 2 popups 1 original and 1 popup which
+//is not correct need to correct it 
 
 
 
