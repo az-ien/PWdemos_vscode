@@ -20,9 +20,21 @@ const context =await browser.newContext();   // context of browser is stored in 
 
 
 const page1 = await context.newPage();        // page of context is stored in a variable  
-await page1.goto('https://testautomationpractice.blogspot.com/');   //page is used
-
 const page2 = await context.newPage();
-await page2.goto('https://testautomationpractice.blogspot.com/');
+
+
+await page1.goto('https://playwright.dev/');   //page is used
+await expect(page1).toHaveTitle('Fast and reliable end-to-end testing for modern web apps | Playwright');
+
+
+await page2.goto('https://www.selenium.dev/');
+await expect(page2).toHaveTitle('Selenium');
+
+
+console.log("No. of pages created: ", context.pages().length)  // return 2 pages
+
+
+await page1.waitForTimeout(5000);
+await page2.waitForTimeout(5000);
 
 })
