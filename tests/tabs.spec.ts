@@ -23,9 +23,7 @@ await parentPage.goto("https://demo.automationtesting.in/Windows.html")
 //parentPage.locator("button[onclick='myFunction()']").click();  // opens new tab 
 //both of the above 2 statements need to be sent simutanously
 //promise.all is a promise array and it will wait for both to be completed 
-//as promise.all returns a promise array it contains 2 already a page and a void this void creates a new tab which is not needed
-//due to this void there are three tabs created so we need to stop the void then only 2 pages parent and child will be there 
-//so child page needs to contain only 2 promisses returned 
+//as promise.all returns a promise array it contains 2 already a page and a void needs to be removed so the breackets
 
 
 const [childPage] = await Promise.all([context.waitForEvent('page'), parentPage.locator("#Tabbed > a > button").click()]);
