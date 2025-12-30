@@ -7,10 +7,9 @@ const context =await browser.newContext();
 
 
 const parentPage = await context.newPage();
-const page2 = await context.newPage();
 
 
-parentPage.goto('https://testautomationpractice.blogspot.com/');
+await parentPage.goto("https://demo.automationtesting.in/Windows.html")
 
 
 //on the click an event is generated which launches a new tab so the sequnece is a click happens an event is generated and then tab 
@@ -24,16 +23,24 @@ parentPage.goto('https://testautomationpractice.blogspot.com/');
 //parentPage.locator("button[onclick='myFunction()']").click();  // opens new tab 
 //both of the above 2 statements need to be sent simutanously
 //promise.all is a promise array and it will wait for both to be completed 
-
-//await Promise.all([context.waitForEvent('page'), parentPage.locator("button[onclick='myFunction()']").click()]);
-
-
-context.waitForEvent('page')
-parentPage.locator("button[onclick='myFunction()']").click(); 
+//as promise.all returns a promise array it contains 2 already a page and a void this void creates a new tab which is not needed
+//due to this void there are three tabs created so we need to stop the void then only 2 pages parent and child will be there 
+//so child page needs to contain only 2 promisses returned 
 
 
+const [childPage] = await Promise.all([context.waitForEvent('page'), parentPage.locator("#Tabbed > a > button").click()]);
+
+//Approach 1: switch between pages, if there are multiple pages use this approach
+const  pages = context.pages();
+console.log("no. of pages created", pages.length);
+
+console.log("title of the parent page ", await pages[0].title());
+console.log("title of the child page ", await pages[1].title());
 
 
+//Approach 2: direct getting, if there are only two tabs use this 
 
+console.log("title of the parent page ", await parentPage.title());
+console.log("title of the child page ", await childPage.title());
 
 })
