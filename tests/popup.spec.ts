@@ -66,9 +66,9 @@ await page.waitForLoadState();
 
 
 // Approach 2:pass username and password with browser context instead of the URL 
-await page.goto("https://the-internet.herokuapp.com/basic_auth");
-await expect(page.locator("//p[contains(text(),'Congratulations! You must have the proper credenti')]"));
-await page.waitForTimeout(5000); 
+// await page.goto("https://the-internet.herokuapp.com/basic_auth");
+// await expect(page.locator("//p[contains(text(),'Congratulations! You must have the proper credenti')]"));
+// await page.waitForTimeout(5000); 
 
 
 
