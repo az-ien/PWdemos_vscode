@@ -29,5 +29,24 @@ test.only("video",async ({page})=>{
 //video will play in the html report
 //video will be saved in the test-results
 await page.goto("https://testautomationpractice.blogspot.com/");
-
+await page.waitForTimeout(5000);
 })
+
+
+//three ways to run the trace 
+//1.through config default way 
+//2.terminal command with the test 
+//3.context of the test and then view the trace file in the https://trace.playwright.dev
+
+
+//trace viewer will create a.zip file that will be created in the test results folder. this .zip file can be opened in the trace viewer 
+//opens the HTML report that is created that will contain the trace.zip and it will open like in the browser with steps and the dev console in webkit
+//if trace for specific test then:  npx playwright test tests/screenshots.spec.ts --headed --trace on
+//context tracing for a specific test
+//as soon as test starts
+//context.tracing.start({screenshots:true, snapshots: true});
+//before ending the test
+//context.traing.stop({'trace.zip'});
+//but trace file will not attach to HTML report
+//then in terminal said: npx playwrigt show-trace trace.zip
+//then the trace.zip will be opened in the trace viewer
