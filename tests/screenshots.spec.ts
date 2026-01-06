@@ -24,7 +24,7 @@ await title.screenshot({path:'screenshots/'+'title'+timestamp+'.png'});
 })
 
 
-test.only("video",async ({page})=>{
+test("video",async ({page})=>{
 //video only from config file 
 //video will play in the html report
 //video will be saved in the test-results
@@ -32,7 +32,7 @@ await page.goto("https://testautomationpractice.blogspot.com/");
 await page.waitForTimeout(5000);
 })
 
-
+//-------------------------------------------------------- trace viewer-----------------------------------------------------------------
 //three ways to run the trace 
 //1.through config default way 
 //2.terminal command with the test 
@@ -50,3 +50,14 @@ await page.waitForTimeout(5000);
 //but trace file will not attach to HTML report
 //then in terminal said: npx playwrigt show-trace trace.zip
 //then the trace.zip will be opened in the trace viewer
+
+
+//--------------------------------------------------------retries multiple times test runner-------------------------------------------------
+//setting of retries runs in CI. the setting is in config and the count is there too
+//retry happens when test fails so will try 2 times and then stop as due to option
+
+
+test.only("flaky test",async ({page})=>{
+await page.goto("https://testautomationpractice.blogspot.com/");
+await page.waitForTimeout(5000);
+})
