@@ -55,7 +55,7 @@ await page.waitForTimeout(5000);
 //--------------------------------------------------------retries multiple times test runner-------------------------------------------------
 //setting of retries runs in CI. the setting is in config and the count is there too
 //retry happens when test fails so will try 2 times and then stop as due to option
-
+//or use this command in the terminal: npx playwright test tests/screenshots.spec.ts --retries=3
 
 test.only("flaky test",async ({page})=>{
 await page.goto("https://testautomationpractice.blogspot.com/");
