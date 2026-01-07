@@ -15,9 +15,16 @@ export default defineConfig({
   testDir: './tests',
 
 
-  // timeout: 60000,        // default timeout fo all tests globally default is 30 this changes it to 60 seconds
-  // expect:{timeout: 10000},   // longer wait for all expect condtions default is 5 this changes it to 10 seconds 
-
+  //timeout: 60000,        // default timeout fo all tests globally default is 30 this changes it to 60 seconds
+  //expect:{timeout: 10000},   // longer wait for all expect condtions default is 5 this changes it to 10 seconds 
+  // You can set `grep` and `grepInvert` using JavaScript RegExp objects.
+  // Examples (uncomment to enable):
+  // Run tests that include the @sanity tag:
+  // grep: /@sanity/,
+  // Run tests that include both @sanity and @regression tags (positive lookahead):
+   grep: /(?=.*@sanity)(?=.*@regression)/,
+  // Invert grep to exclude @sanity:
+  // grepInvert: /@sanity/,
 
 
   /* Run tests in files in parallel */

@@ -189,7 +189,27 @@ test('test2', async() => {
 
 //--------------------------------------------Tags----------------------------------------------------
 //tests are tagged so that if only one tag needs to be run then that is only run like sanity tests and regression tests 
+//Approach1: @sanity this is a tag. @abc this is also a tag
+//Approach2: add the tag as parameter in the test as {tag: '@sanity'}
+//run it like this: npx playwright test tests/groupingHooksTagsAnnot.spec.ts --grep "@sanity"
+//if multiple tags then: npx playwright test tests/groupingHooksTagsAnnot.spec.ts --grep "(?=.*@sanity)(?=.*@regression)"
+//if one or the other use: npx playwright test tests/groupingHooksTagsAnnot.spec.ts --grep "@sanity|@regression" 
+//if only one not the other also not the common tag so only regression will run, this is opposite: npx playwright test tests/groupingHooksTagsAnnot.spec.ts --grep-invert "@sanity"
+//in config add the grep and then make the tag there if command is not to be used here -- use config thing
+
+test(" test tag 1",{tag: '@sanity'}, async ({page})=>{
+await page.goto("https://www.google.com/");
+await expect(page).toHaveTitle('Google');
+})
 
 
+test(" test tag 2",{tag: '@regression'}, async ({page})=>{
+await page.goto("https://www.google.com/");
+await expect(page).toHaveTitle('Google');
+})
 
-
+//make an array and pass multiple tags in the tag
+test(" test tag 3",{tag:['@sanity','@regression']}, async ({page})=>{
+await page.goto("https://www.google.com/");
+await expect(page).toHaveTitle('Google');
+})
