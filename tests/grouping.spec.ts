@@ -98,6 +98,7 @@ import{test, expect, Locator,Page} from "@playwright/test"
 //create a browser while your at it ugghhhhhh !!!
 //Iam using page 
 //one problem with custom before all and after all these two will only accept browser fixtures not the page so need to pass a browser in the 
+//hooks in a group will be local to that group, so hooks have to be out of the group
 let page: Page;
 
 test.beforeAll('open app', async({browser}) => {
@@ -123,6 +124,7 @@ await page.locator('#logout2').click();
 })
 
 
+test.describe('mygroup',async()=>{
 test('test1', async() => {
 await expect(page.locator('#logout2')).toBeVisible();
 })
@@ -130,4 +132,5 @@ await expect(page.locator('#logout2')).toBeVisible();
 
 test('test2', async() => {
     await expect(page.locator('#nameofuser')).toHaveText('Welcome pavanol');
+})
 })
