@@ -142,30 +142,54 @@ test('test2', async() => {
 //only -- only runs that specific test 
 //skip -- skip the test permanently and with a condition
 //fail -- intentionally fail the test 
-//fixme
-//slow
+//fixme -- it skips the test 
+//slow -- slows the test execution 3 times
 
 
-test("test1",async ({page})=>{
-await page.goto("https://www.google.com/");
-await expect(page).toHaveTitle('Google');
-})
+// test("test1",async ({page})=>{
+// await page.goto("https://www.google.com/");
+// await expect(page).toHaveTitle('Google');
+// })
 
 
-test.skip("test2",async ({page})=>{
-await page.goto("https://www.google.com/");
-await expect(page).toHaveTitle('Google');
-})
+// test.skip("test2",async ({page})=>{
+// await page.goto("https://www.google.com/");
+// await expect(page).toHaveTitle('Google');
+// })
 
 
-test.skip("test3",async ({page,browser,browserName})=>{
-test.skip(browserName === 'firefox', 'Still working on it for Firefox');
-await page.goto("https://www.google.com/");
-await expect(page).toHaveTitle('Google');
-})
+// test.skip("test3",async ({page,browser,browserName})=>{
+// test.skip(browserName === 'firefox', 'Still working on it for Firefox');
+// await page.goto("https://www.google.com/");
+// await expect(page).toHaveTitle('Google');
+// })
 
 
-test.fail("test4",async ({page})=>{
-await page.goto("https://www.google.com/");
-await expect(page).toHaveTitle('Google');
-})
+// test.fail("test4",async ({page})=>{
+// await page.goto("https://www.google.com/");
+// await expect(page).toHaveTitle('Google');
+// })
+
+
+// test.fixme("test5",async ({page})=>{
+// await page.goto("https://www.google.com/");
+// await expect(page).toHaveTitle('Google');
+// })
+
+
+// test("test6",async ({page})=>{
+// test.slow();
+// await page.goto("https://www.google.com/");
+// await expect(page).toHaveTitle('Google');
+// })
+
+
+
+
+
+//--------------------------------------------Tags----------------------------------------------------
+//tests are tagged so that if only one tag needs to be run then that is only run like sanity tests and regression tests 
+
+
+
+
