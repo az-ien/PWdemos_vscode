@@ -134,3 +134,38 @@ test('test2', async() => {
     await expect(page.locator('#nameofuser')).toHaveText('Welcome pavanol');
 })
 })
+
+
+
+//---------------------------annotations(not like testng those are hooks)--------------------------------
+
+//only -- only runs that specific test 
+//skip -- skip the test permanently and with a condition
+//fail -- intentionally fail the test 
+//fixme
+//slow
+
+
+test("test1",async ({page})=>{
+await page.goto("https://www.google.com/");
+await expect(page).toHaveTitle('Google');
+})
+
+
+test.skip("test2",async ({page})=>{
+await page.goto("https://www.google.com/");
+await expect(page).toHaveTitle('Google');
+})
+
+
+test.skip("test3",async ({page,browser,browserName})=>{
+test.skip(browserName === 'firefox', 'Still working on it for Firefox');
+await page.goto("https://www.google.com/");
+await expect(page).toHaveTitle('Google');
+})
+
+
+test.fail("test4",async ({page})=>{
+await page.goto("https://www.google.com/");
+await expect(page).toHaveTitle('Google');
+})
