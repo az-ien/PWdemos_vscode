@@ -1,0 +1,21 @@
+[
+{
+    "email":"student",
+     "pass":"Password123",
+    "Validity":"valid"
+},
+
+{
+     "email":"lalala",
+     "pass":"test321",
+     "Validity":"invalid"
+
+},
+
+{
+"email": "",
+"pass": "",
+"Validity": "invalid"
+}
+
+]
