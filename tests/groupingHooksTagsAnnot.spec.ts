@@ -1,5 +1,9 @@
-//by deafult tests are run in the without any order
+//by deafult tests are run in the without any order serial execution for parallel execution but without order
 //change fullyParallel: true, in the config file to false which will run the tests in sequential order 
+//to run tests parallely we need to set it in config file the condition fullyparallel to true 
+//if this is false then the worker will always be 1, whcih means serial execution
+//one worker is like a thread for parallel we need to create 5 workers as threads to indivdually run the test
+//serial execution will always take one worker never multiple workers
 
 import{test, expect, Locator,Page} from "@playwright/test"
 

@@ -22,7 +22,7 @@ export default defineConfig({
   // Run tests that include the @sanity tag:
   // grep: /@sanity/,
   // Run tests that include both @sanity and @regression tags (positive lookahead):
-   grep: /(?=.*@sanity)(?=.*@regression)/,
+  // grep: /(?=.*@sanity)(?=.*@regression)/,
   // Invert grep to exclude @sanity:
   // grepInvert: /@sanity/,
 
