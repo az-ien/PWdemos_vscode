@@ -1,12 +1,6 @@
-import {test,expect} from "@playwright/test";
-import { HomePage } from "../POM_example/Homepage";
-
-
+import { test, expect } from '../POM_example/fixtures';
 // define it as a async function
-test("verify page url", async ({page})=>{
-
-// every step (background task) returns promise so await needed for every statement
- const homePage = new HomePage(page);
+test("verify page url", async ({homePage})=>{
 
   // Navigate to the site using the POM method
   await homePage.goto();
@@ -16,7 +10,7 @@ test("verify page url", async ({page})=>{
   console.log("Url:", url);
 
   // Assert URL contains expected text
-  await expect(page).toHaveURL(/automationexercise/);
+  await expect(homePage.page).toHaveURL(/automationexercise/);
 })
 
 
