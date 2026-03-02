@@ -1,3 +1,7 @@
+//fixtures can be used to support a Page Object Model (POM) in Playwright Test, but they don’t replace POM. 
+//Instead, they help you inject page object instances automatically into your tests,making your test code cleaner and more maintainable.
+
+
 import { test as base } from '@playwright/test';
 // This is a POM (Page Object Model) class that encapsulates navigation/actions.
 import { HomePage } from '../POM_example/Homepage';
