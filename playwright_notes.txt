@@ -1,4 +1,3 @@
-import {test,expect} from "@playwright/test";
 //npm = node package manager, npx = node package executor
 
 //syntax:
@@ -44,16 +43,3 @@ import {test,expect} from "@playwright/test";
 //npx playwright test mytest2.spec.ts --headless
 //how to run through UI not command: npx playwright test --ui // captures a lot of information, easy to debug the test
 //npx playwright test mytest2.spec.ts --debug, opens browser and opens the code with it and with that it can be debugged
-
-
-// define it as a async function
-test("verify page url", async ({page})=>{
-
-// every step (background task) returns promise so await needed for every statement
-await page.goto("https://automationexercise.com/");
-let url:string = await page.url();
-console.log("Url:", url);
-await expect(page).toHaveURL(/automationexercise/);
-})
-
-
