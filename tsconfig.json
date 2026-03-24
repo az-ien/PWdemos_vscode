@@ -1,3 +1,6 @@
+//"types": ["node"] tells TypeScript to include Node type definitions (so it knows what process means).
+//You don’t add this inside playwright.config.ts — that file is not where TypeScript compiler options go.
+//The "compilerOptions": { "types": ["node"] } belongs in your tsconfig.json (or a related TS config), not in a .ts source file.
 {
   "compilerOptions": {
     "target": "ESNext",
