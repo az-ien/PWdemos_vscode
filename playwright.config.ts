@@ -14,6 +14,15 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
 
+  //this will run a custom API that will run before a specific API test only 
+  testMatch: 'tests/API_testing/Tests_using_cutom_API/students.spec.ts',
+  webServer: {
+    command: 'npx json-server --watch tests/API_testing/Tests_using_cutom_API/students.json --port 3000',
+    url: 'http://localhost:3000/students',
+    reuseExistingServer: !process.env.CI,
+    timeout: 60 * 1000, // optional: wait time for server start
+  },
+
 
   //timeout: 60000,        // default timeout fo all tests globally default is 30 this changes it to 60 seconds
   //expect:{timeout: 10000},   // longer wait for all expect condtions default is 5 this changes it to 10 seconds 
