@@ -10,8 +10,7 @@ type MyFixtures = {
 export const test = base.extend<MyFixtures>({
   // This runs before tests that use `student`
   student: async ({ request }: { request: APIRequestContext }, use) => {
-    // Read JSON for student
-    // where playwright test is executed from.
+    // Read JSON for students
     const filePath = path.join(__dirname, 'students.json');
     const datafromjsonfile = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 

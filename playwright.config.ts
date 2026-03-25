@@ -14,7 +14,8 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
 
-  //this will run a custom API using json server that will 
+  //this will run a custom API using json server that will
+  testMatch: 'tests/API_testing/Tests_using_cutom_API/students.spec.ts',
   webServer: {
     command: 'npx json-server --watch tests/API_testing/Tests_using_cutom_API/students.json --port 3000',
     url: 'http://localhost:3000/students',
