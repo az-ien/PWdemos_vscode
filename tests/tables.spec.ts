@@ -1,5 +1,11 @@
 import{test, expect, Locator} from "@playwright/test"
 
+
+// when working with tables: first pick rows then pick columns and then pick the cell value.
+// basically following the html in which the table is made
+// why make your own logic to traverse the table when you can use the html structure to traverse the table and get the data you want.
+
+
 test("tables",async ({page})=>{
 
 await page.goto('https://testautomationpractice.blogspot.com/');
