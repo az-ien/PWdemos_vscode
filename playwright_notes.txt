@@ -36,6 +36,52 @@
 //by default HTML report 
 
 
+Flow of Playwright execution:
+
+1/ CLI / CI Trigger
+npx playwright test fires locally, or the CI pipeline triggers on push/PR.
+Playwright CLI parses flags like --shard, --grep, --project to decide which tests run and on which workers.
+
+2/ Config & ENV Loading
+playwright.config.ts is read first - baseURL, timeouts, retries, reporters, projects.
+globalSetup() runs ONCE before any worker boots: seeds the DB, generates auth tokens, loads .env vars.
+
+3/ Browser Launch & Context Isolation
+browser.newContext() gives each worker a completely isolated context.
+Separate cookies, localStorage, network state - zero bleed between parallel tests.
+This is why Playwright parallelism is reliable where Selenium struggled.
+
+4/ Fixture Setup & Authentication
+test.extend() fixtures run before the test body.
+The authenticatedPage fixture logs in via API, saves storageState, and injects a pre-authenticated page.
+Result: no login UI on every test, dramatically faster suites.
+
+5/ Page Object Interactions
+POM methods call semantic locators - getByRole(), getByLabel(), getByTestId().
+Playwright auto-waits for visibility, stability, and enabled state before every action.
+No Thread.sleep(). No explicit waits cluttering your tests.
+
+6/ Assertions & Retry Logic
+Web-first assertions poll until the condition passes or timeout hits.
+expect(locator).toBeVisible() doesn't just check once - it retries internally.
+On full test failure: Playwright retries the entire test with a fresh browser context.
+
+7/ Trace & Screenshot Capture
+Failed tests get a full trace ZIP automatically:
+→ DOM snapshot at every step
+→ Network HAR logs
+→ Console output
+→ Failure screenshots
+
+playwright show-trace opens a visual step-by-step timeline debugger. No other framework ships this out of the box.
+
+8/ Report Generation
+HTML reporter builds a browsable dashboard.
+JUnit XML plugs straight into GitHub Actions and Azure DevOps.
+Custom reporters can Slack-alert on failures, push trend metrics to dashboards, or integrate with Grafana.
+
+
+
 //commands to run tests 
 //npx playwright show-report
 //npx playwright test -g "title"  
