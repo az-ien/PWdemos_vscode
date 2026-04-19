@@ -36,7 +36,7 @@
 //by default HTML report 
 
 
-Flow of Playwright execution:
+---------------------------------------------------------Flow of Playwright execution:-----------------------------------------------------
 
 1/ CLI / CI Trigger
 npx playwright test fires locally, or the CI pipeline triggers on push/PR.
@@ -82,7 +82,21 @@ Custom reporters can Slack-alert on failures, push trend metrics to dashboards, 
 
 
 
-//commands to run tests 
+-------------------------------------------------------Forlder structure------------------------------------------------------
+• workflows → CI/CD execution through GitHub Actions
+• config → environment-wise setup (dev / qa / staging)
+• tests → actual test scenarios
+• pages → page object files
+• components → reusable UI sections
+• fixtures → common setup and reusable test data handling
+• utils → helpers, API utilities, logging
+• test-data → external test inputs
+• reports → execution reports
+• mocks → mock responses when needed
+
+
+
+-------------------------------------------------//commands to run tests--------------------------------------------------------- 
 //npx playwright show-report
 //npx playwright test -g "title"  
 //npx playwright test mytest2.spec.ts
